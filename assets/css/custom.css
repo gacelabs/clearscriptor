@@ -22,6 +22,11 @@ textarea {
 	margin-bottom: 100px;
 }
 
+#clearscriptor-panel {
+	margin-top: 5px;
+	padding-top: 70px;
+}
+
 .responsive {
 	width: 100%;
 	height: auto;
@@ -31,6 +36,10 @@ textarea {
 	width: 100%;
 	background-color: #555;
 	overflow: auto;
+	position: fixed;
+	right: 0;
+	z-index: 5;
+	top: 0;
 }
 
 .navbar a:first-child div img {
@@ -79,8 +88,9 @@ textarea {
 	text-align: center;
 	color: white;
 	z-index: 4;
-	padding: 10px 0;
+	padding: 0;
 }
+
 .footer a {
 	color: white;
 }
@@ -90,6 +100,7 @@ textarea {
 		width: auto;
 		margin: auto;
 	}
+
 	.navbar a {
 
 		display: block;

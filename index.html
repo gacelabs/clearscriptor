@@ -45,18 +45,19 @@
 			<a href="javascript:;" class="share"><i class="fa fa-fw fa-share"></i>
 				<span>Share</span>
 			</a>
-			<!-- <a href="javascript:;"><i class="fa fa-fw fa-link"></i>
+			<a href="javascript:;" class="copy"><i class="fa fa-fw fa-link"></i>
 				<span>Copy</span>
-			</a> -->
+			</a>
 			<!-- <a href="javascript:;"><i class="fa fa-fw fa-edit"></i>
 				<span>Edit</span>
 			</a> -->
 		</div>
-		<form>
+
+		<form id="clearscriptor-panel">
 			<textarea id="comments" placeholder="What key aspects of your code do you want them to be aware of?"></textarea>
+			<!-- Textarea where CodeMirror will be applied -->
+			<textarea id="code-script" style="display: none;">// Paste your code here...</textarea>
 		</form>
-		<!-- Textarea where CodeMirror will be applied -->
-		<textarea id="code-script" style="display: none;">// Paste your code here...</textarea>
 
 		<div class="footer">
 			<p class="mbr-fonts-style copyright mb-0 display-7">

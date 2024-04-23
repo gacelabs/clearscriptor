@@ -27,14 +27,15 @@ editor.on('change', (args) => {
 
 document.body.onload = function (params) {
 	document.querySelector('.year-value').innerHTML = new Date().getFullYear();
-	document.querySelector('.share').style.display = 'block';
+	document.querySelector('.share').style.display = 'none';
 	if (mobileCheck()) {
-		document.querySelector('.share').style.display = 'none';
+		document.querySelector('.share').style.display = 'block';
 	}
 }
 
 document.querySelector('.share').addEventListener('click', function (e) {
-	const screenshotTarget = document.querySelector('.CodeMirror');
+	// const screenshotTarget = document.querySelector('.CodeMirror');
+	const screenshotTarget = document.getElementById('clearscriptor-panel');
 
 	if (editor.doc.size > 1) {
 		if (comments.value.length) {
@@ -54,41 +55,13 @@ document.querySelector('.share').addEventListener('click', function (e) {
 					await navigator.share({
 						files: [file],
 						title: 'Share Code',
-						text: comments.innerHTML
+						text: comments.value
 					});
 				} else {
 					// Web Share API is not supported
 					console.error('Web Share API is not supported.');
 					showAlert('Web Share API is not supported in this browser.', 'bad');
 				}
-				// shareInGroup();
-
-				/* const base64image = canvas.toDataURL("image/png");
-				// window.location.href = base64image;
-				var response = await fetch(base64image);
-				var blob = await response.blob();
-				var file = new File([blob], 'code_clearscriptor.jpg', { type: blob.type });
-				// console.log(file);
-		
-				const pickerOptions = {
-					suggestedName: 'code_clearscriptor.jpeg',
-					types: [
-						{
-							description: 'Clear Scriptor - Code Sample',
-							accept: {
-								'image/png': ['.jpeg'],
-							},
-						},
-					],
-				};
-				try {
-					const fileHandle = await window.showSaveFilePicker(pickerOptions);
-					const writableFileStream = await fileHandle.createWritable();
-					await writableFileStream.write(file);
-					await writableFileStream.close();
-				} catch (error) {
-					console.error(error);
-				} */
 			});
 		} else {
 			showAlert('Please provide your code aspects you want to share!', 'bad');
@@ -96,5 +69,52 @@ document.querySelector('.share').addEventListener('click', function (e) {
 	} else {
 		showAlert('Kindly provide your code before sharing it!', 'bad');
 	}
+});
 
+document.querySelector('.copy').addEventListener('click', function (e) {
+	// const screenshotTarget = document.querySelector('.CodeMirror');
+	const screenshotTarget = document.getElementById('clearscriptor-panel');
+
+	if (editor.doc.size > 1) {
+		if (comments.value.length) {
+			html2canvas(screenshotTarget).then(async (canvas) => {
+				const base64image = canvas.toDataURL("image/png");
+				var imagePath = 'assets/images/meta/' + ID + 'code_clearscriptor.jpeg';
+				// window.location.href = base64image;
+				var response = await fetch(base64image);
+				var blob = await response.blob();
+				var file = new File([blob], imagePath, { type: blob.type });
+				// console.log(file);
+		
+				const pickerOptions = {
+					suggestedName: imagePath,
+					types: [
+						{
+							description: comments.value,
+							accept: {
+								'image/png': ['.jpeg'],
+							},
+						},
+					],
+				};
+		
+				document.querySelector('[property="og:image"]').content = window.location.origin + window.location.pathname + imagePath;
+		
+				try {
+					const fileHandle = await window.showSaveFilePicker(pickerOptions);
+					const writableFileStream = await fileHandle.createWritable();
+					await writableFileStream.write(file);
+					console.log(writableFileStream, fileHandle);
+					await writableFileStream.close();
+				} catch (error) {
+					console.error(error);
+					showAlert('Save file picker is not supported in this browser.', 'bad');
+				}
+			});
+		} else {
+			showAlert('Please provide your code aspects you want to share!', 'bad');
+		}
+	} else {
+		showAlert('Kindly provide your code before sharing it!', 'bad');
+	}
 });
