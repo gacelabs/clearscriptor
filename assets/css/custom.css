@@ -1,0 +1,194 @@
+html {
+	font-family: Arial, Helvetica, sans-serif;
+	width: 1024px;
+	margin: auto;
+}
+* {
+	color: white;
+}
+textarea {
+	width: 100%;
+	height: 100px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	font-size: 16px;
+	resize: vertical;
+}
+
+.CodeMirror {
+	/* height: 85vh !important; */
+	font-size: 12px;
+}
+
+.responsive {
+	width: 100%;
+	height: auto;
+}
+
+.navbar {
+	width: 100%;
+	background-color: #555;
+	overflow: auto;
+}
+
+.navbar a:first-child div img {
+	vertical-align: middle;
+}
+
+.navbar div.logo-title {
+	position: absolute;
+	margin: 25px 70px;
+	font-size: 15px;
+	display: none;
+}
+
+.navbar a:first-child {
+	float: left;
+	height: 48px;
+}
+
+.navbar a:not(:first-child) {
+	padding: 27px 12px;
+}
+
+.navbar a {
+	float: right;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+}
+
+.navbar a:hover {
+	background-color: #000;
+}
+
+.active {
+	background-color: #04AA6D;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #555;
+	text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+	html {
+		width: auto;
+		margin: auto;
+	}
+	.navbar a {
+
+		display: block;
+		font-size: 16px;
+	}
+
+	.navbar a:not(:first-child) {
+		padding-top: 27px;
+	}
+
+	.navbar a span {
+		display: none;
+	}
+
+	.navbar div.logo-title {
+		display: block;
+	}
+
+	.snackbar {
+		margin: inherit !important;
+		left: 30px !important;
+		right: 30px !important;
+		min-width: auto !important;
+	}
+}
+
+.snackbar {
+	visibility: hidden;
+	width: auto;
+	color: #fff;
+	text-align: center;
+	border-radius: 2px;
+	padding: 16px;
+	position: fixed;
+	z-index: 3;
+	left: 35%;
+	bottom: 70px;
+	right: 35%;
+}
+
+.snackbar.show {
+	visibility: visible;
+	-webkit-animation: fadein 0.5s;
+	animation: fadein 0.5s;
+}
+
+.snackbar.show.good,
+.snackbar.out.good {
+	background-color: #147434;
+}
+
+.snackbar.show.bad,
+.snackbar.out.bad {
+	background-color: #f74545;
+}
+
+.snackbar.out {
+	visibility: visible;
+	-webkit-animation: fadeout 0.5s;
+	animation: fadeout 0.5s;
+}
+
+@-webkit-keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+
+	to {
+		bottom: 70px;
+		opacity: 1;
+	}
+}
+
+@keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+
+	to {
+		bottom: 70px;
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeout {
+	from {
+		bottom: 70px;
+		opacity: 1;
+	}
+
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes fadeout {
+	from {
+		bottom: 70px;
+		opacity: 1;
+	}
+
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}
