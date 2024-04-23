@@ -31,7 +31,7 @@ document.querySelector('.share').addEventListener('click', function (e) {
 
 				if (navigator.share) {
 					const img = Canvas2Image.convertToImage(canvas, canvasWidth, canvasHeight);
-					var imageUrl = img[0].src;
+					var imageUrl = img.src;
 					var response = await fetch(imageUrl);
 					var blob = await response.blob();
 					var file = new File([blob], ID + 'code_clearscriptor.jpeg', { type: blob.type });
