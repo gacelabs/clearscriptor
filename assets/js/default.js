@@ -84,7 +84,7 @@ document.querySelector('.copy').addEventListener('click', function (e) {
 					const items = [{ type: 'image/png', blob: blob }];
 					const clipboardData = new ClipboardItem({ [blob.type]: blob });
 					await navigator.clipboard.write([clipboardData]);
-					showAlert('Image copied to clipboard successfully!', 'good');
+					showAlert('Code converted to Image & copied to clipboard, Share it to social media groups and collaboratively find a solution!', 'good');
 				} catch (error) {
 					console.error(error);
 					showAlert('Web Clipboard API is not supported in this browser!', 'bad');
