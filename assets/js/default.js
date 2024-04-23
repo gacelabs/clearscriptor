@@ -27,10 +27,10 @@ editor.on('change', (args) => {
 
 document.body.onload = function (params) {
 	document.querySelector('.year-value').innerHTML = new Date().getFullYear();
-	document.querySelector('.share').style.display = 'none';
+	/* document.querySelector('.share').style.display = 'none';
 	if (mobileCheck()) {
 		document.querySelector('.share').style.display = 'block';
-	}
+	} */
 }
 
 document.querySelector('.share').addEventListener('click', function (e) {
@@ -38,7 +38,7 @@ document.querySelector('.share').addEventListener('click', function (e) {
 	const screenshotTarget = document.getElementById('clearscriptor-panel');
 
 	if (editor.doc.size > 1) {
-		if (comments.value.length) {
+		// if (comments.value.length) {
 			html2canvas(screenshotTarget).then(async (canvas) => {
 				var canvasWidth = canvas.width;
 				var canvasHeight = canvas.height;
@@ -55,7 +55,7 @@ document.querySelector('.share').addEventListener('click', function (e) {
 					await navigator.share({
 						files: [file],
 						title: 'Share Code',
-						text: comments.value
+						// text: comments.value
 					});
 				} else {
 					// Web Share API is not supported
@@ -63,9 +63,9 @@ document.querySelector('.share').addEventListener('click', function (e) {
 					showAlert('Web Share API is not supported in this browser.', 'bad');
 				}
 			});
-		} else {
-			showAlert('Please provide your code aspects you want to share!', 'bad');
-		}
+		// } else {
+		// 	showAlert('Please provide your code aspects you want to share!', 'bad');
+		// }
 	} else {
 		showAlert('Kindly provide your code before sharing it!', 'bad');
 	}
@@ -76,11 +76,22 @@ document.querySelector('.copy').addEventListener('click', function (e) {
 	const screenshotTarget = document.getElementById('clearscriptor-panel');
 
 	if (editor.doc.size > 1) {
-		if (comments.value.length) {
+		// if (comments.value.length) {
 			html2canvas(screenshotTarget).then(async (canvas) => {
 				const base64image = canvas.toDataURL("image/png");
-				var imagePath = 'assets/images/meta/' + ID + 'code_clearscriptor.jpeg';
-				// window.location.href = base64image;
+				try {
+					const blob = await fetch(base64image).then(response => response.blob());
+					const items = [{ type: 'image/png', blob: blob }];
+					const clipboardData = new ClipboardItem({ [blob.type]: blob });
+					await navigator.clipboard.write([clipboardData]);
+					showAlert('Image copied to clipboard successfully!', 'good');
+				} catch (error) {
+					console.error(error);
+					showAlert('Web Clipboard API is not supported in this browser!', 'bad');
+				}
+
+				// var imagePath = ID + 'code_clearscriptor.jpeg';
+				/* // window.location.href = base64image;
 				var response = await fetch(base64image);
 				var blob = await response.blob();
 				var file = new File([blob], imagePath, { type: blob.type });
@@ -90,7 +101,7 @@ document.querySelector('.copy').addEventListener('click', function (e) {
 					suggestedName: imagePath,
 					types: [
 						{
-							description: comments.value,
+							// description: comments.value,
 							accept: {
 								'image/png': ['.jpeg'],
 							},
@@ -99,7 +110,6 @@ document.querySelector('.copy').addEventListener('click', function (e) {
 				};
 		
 				document.querySelector('[property="og:image"]').content = window.location.origin + window.location.pathname + imagePath;
-		
 				try {
 					const fileHandle = await window.showSaveFilePicker(pickerOptions);
 					const writableFileStream = await fileHandle.createWritable();
@@ -109,11 +119,11 @@ document.querySelector('.copy').addEventListener('click', function (e) {
 				} catch (error) {
 					console.error(error);
 					showAlert('Save file picker is not supported in this browser.', 'bad');
-				}
+				} */
 			});
-		} else {
-			showAlert('Please provide your code aspects you want to share!', 'bad');
-		}
+		// } else {
+		// 	showAlert('Please provide your code aspects you want to share!', 'bad');
+		// }
 	} else {
 		showAlert('Kindly provide your code before sharing it!', 'bad');
 	}
