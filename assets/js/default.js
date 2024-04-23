@@ -6,6 +6,7 @@ var ID = deviceID();
 
 window.onresize = function () {
 	ID = deviceID();
+	document.body.onload();
 };
 
 var editor = CodeMirror.fromTextArea(codeScript, {
@@ -17,12 +18,25 @@ var editor = CodeMirror.fromTextArea(codeScript, {
 
 editor.on('change', (args) => {
 	// console.log(args);
+	if (args.doc.size > 1) {
+		args.setSize('auto', 'auto');
+	} else {
+		args.setSize('auto', 300);
+	}
 });
+
+document.body.onload = function (params) {
+	document.querySelector('.year-value').innerHTML = new Date().getFullYear();
+	document.querySelector('.share').style.display = 'block';
+	if (mobileCheck()) {
+		document.querySelector('.share').style.display = 'none';
+	}
+}
 
 document.querySelector('.share').addEventListener('click', function (e) {
 	const screenshotTarget = document.querySelector('.CodeMirror');
 
-	if (editor.doc.size > 2) {
+	if (editor.doc.size > 1) {
 		if (comments.value.length) {
 			html2canvas(screenshotTarget).then(async (canvas) => {
 				var canvasWidth = canvas.width;

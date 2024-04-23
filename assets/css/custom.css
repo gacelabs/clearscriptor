@@ -19,6 +19,7 @@ textarea {
 .CodeMirror {
 	/* height: 85vh !important; */
 	font-size: 12px;
+	margin-bottom: 100px;
 }
 
 .responsive {
@@ -77,6 +78,8 @@ textarea {
 	background-color: #555;
 	text-align: center;
 	color: white;
+	z-index: 4;
+	padding: 10px 0;
 }
 .footer a {
 	color: white;
