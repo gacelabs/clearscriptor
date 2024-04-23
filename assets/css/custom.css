@@ -3,9 +3,7 @@ html {
 	width: 1024px;
 	margin: auto;
 }
-* {
-	color: white;
-}
+
 textarea {
 	width: 100%;
 	height: 100px;
@@ -42,6 +40,7 @@ textarea {
 	position: absolute;
 	margin: 25px 70px;
 	font-size: 15px;
+	color: white;
 	display: none;
 }
 
@@ -59,6 +58,7 @@ textarea {
 	text-align: center;
 	padding: 12px;
 	text-decoration: none;
+	color: white;
 }
 
 .navbar a:hover {
@@ -76,6 +76,10 @@ textarea {
 	width: 100%;
 	background-color: #555;
 	text-align: center;
+	color: white;
+}
+.footer a {
+	color: white;
 }
 
 @media screen and (max-width: 500px) {

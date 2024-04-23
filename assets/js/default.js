@@ -23,7 +23,7 @@ document.querySelector('.share').addEventListener('click', function (e) {
 	const screenshotTarget = document.querySelector('.CodeMirror');
 
 	if (editor.doc.size > 2) {
-		if (comments.innerHTML.length) {
+		if (comments.value.length) {
 			html2canvas(screenshotTarget).then(async (canvas) => {
 				var canvasWidth = canvas.width;
 				var canvasHeight = canvas.height;
