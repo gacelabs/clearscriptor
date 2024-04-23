@@ -34,8 +34,8 @@ document.body.onload = function (params) {
 }
 
 document.querySelector('.share').addEventListener('click', function (e) {
-	// const screenshotTarget = document.querySelector('.CodeMirror');
-	const screenshotTarget = document.getElementById('clearscriptor-panel');
+	const screenshotTarget = document.querySelector('.CodeMirror');
+	// const screenshotTarget = document.getElementById('clearscriptor-panel');
 
 	if (editor.doc.size > 1) {
 		// if (comments.value.length) {
@@ -72,8 +72,8 @@ document.querySelector('.share').addEventListener('click', function (e) {
 });
 
 document.querySelector('.copy').addEventListener('click', function (e) {
-	// const screenshotTarget = document.querySelector('.CodeMirror');
-	const screenshotTarget = document.getElementById('clearscriptor-panel');
+	const screenshotTarget = document.querySelector('.CodeMirror');
+	// const screenshotTarget = document.getElementById('clearscriptor-panel');
 
 	if (editor.doc.size > 1) {
 		// if (comments.value.length) {
